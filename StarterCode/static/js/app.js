@@ -1,6 +1,7 @@
 console.log("app.js is loaded");
 
 // Initial code was given in office hours walkthrough by Dom
+// This includes the DrawBargraph Function and the InitDashboard Function, as well as tips and tricks for structure
 
 function DrawBargraph(sampleID) {
     console.log(`DrawBargraph(${sampleID})`);
@@ -28,14 +29,14 @@ function DrawBargraph(sampleID) {
             type: "bar",
             text: otu_labels.slice(0, 10).reverse(), // TBD
             orientation: "h"
-        }
+        };
 
         var barArray = [barData];
 
         var barLayout = {
             title: "Top 10 Bacteria Cultures Found",
             margin: {t: 30, l: 150}
-        }
+        };
 
         Plotly.newPlot("bar", barArray, barLayout);
     })
@@ -43,6 +44,40 @@ function DrawBargraph(sampleID) {
 
 function DrawBubblechart(sampleID) {
     console.log(`DrawBubblechart(${sampleID})`);
+
+    d3.json("../data/samples.json").then(data => {
+        console.log(data);
+
+        var samples = data.samples;
+        var resultArray = samples.filter(sample => sample.id == sampleID);
+        console.log(resultArray);
+
+        var result = resultArray[0];
+        console.log(result);
+
+        var otu_ids = result.otu_ids;
+        var otu_labels = result.otu_labels;
+        var sample_values = result.sample_values;
+
+        var bubbleData = {
+            x: otu_ids,
+            y: sample_values,
+            text: otu_labels,
+            mode: "markers",
+            marker: {
+                color: otu_ids,
+                size: sample_values
+            }
+        };
+
+        var bubbleArray = [bubbleData];
+
+        var bubbleLayout = {
+            title: "Distribution of Bacterial Cultures Found"
+        };
+
+        Plotly.newPlot("bubble", bubbleArray, bubbleLayout);
+    })
 }
 
 function ShowMetadata(sampleID) {
