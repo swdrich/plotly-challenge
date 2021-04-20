@@ -118,30 +118,18 @@ function ShowMetadata(sampleID) {
         console.log(result);
 
         // Select demographic panel
-        var ul = d3.select("#sample-metadata").append("ul");
+        var panel = d3.select("#sample-metadata");
 
-        var selection = ul.selectAll("li")
-            .data(result)
-            .enter()
-            .append("li")
-            .text(function (d) {
-                return d;
-            });
-            
-    })
-        // var panelList = panel.select("ul");
-        // var prow;
-        // for (var i=0; i<7; i++) {
-        //     console.log(result.id);
-        //     prow = panelList.append("li");
-        //     prow.append("li").text(result.id);
-        //     prow.append("li").text(result.ethnicity);
-        //     prow.append("li").text(result.gender);
-        //     prow.append("li").text(result.age);
-        //     prow.append("li").text(result.location);
-        //     prow.append("li").text(result.bbtype);
-        //     prow.append("li").text(result.wfreq);
-        
+        console.log(result.id);
+        panel.append("p").text(`ID: ${result.id}`);
+        panel.append("p").text(`Ethnicity: ${result.ethnicity}`);
+        panel.append("p").text(`Gender: ${result.gender}`);
+        panel.append("p").text(`Age: ${result.age}`);
+        panel.append("p").text(`Location: ${result.location}`);
+        panel.append("p").text(`Belly Button Type: ${result.bbtype}`);
+        panel.append("p").text(`Wash Frequency: ${result.wfreq}`);
+          
+    });     
 }
 
 function optionChanged(newSampleID) {
