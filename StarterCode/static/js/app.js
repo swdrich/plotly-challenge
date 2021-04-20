@@ -105,6 +105,11 @@ function unpack(key, value) {
 function ShowMetadata(sampleID) {
     console.log(`ShowMetadata(${sampleID})`);
 
+    // Remove old data if it exists
+    d3.select("#sample-metadata")
+        .selectAll("p")
+        .remove();
+
     // Read JSON data
     d3.json("../data/samples.json").then(data => {
         console.log(data);
