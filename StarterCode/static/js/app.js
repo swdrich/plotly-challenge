@@ -122,17 +122,23 @@ function ShowMetadata(sampleID) {
         var result = resultArray[0];
         console.log(result);
 
+        var resultKeys = Object.keys(result);
+        var resultValues = Object.values(result);
+
         // Select demographic panel
         var panel = d3.select("#sample-metadata");
 
-        console.log(result.id);
-        panel.append("p").text(`ID: ${result.id}`);
-        panel.append("p").text(`Ethnicity: ${result.ethnicity}`);
-        panel.append("p").text(`Gender: ${result.gender}`);
-        panel.append("p").text(`Age: ${result.age}`);
-        panel.append("p").text(`Location: ${result.location}`);
-        panel.append("p").text(`Belly Button Type: ${result.bbtype}`);
-        panel.append("p").text(`Wash Frequency: ${result.wfreq}`);
+        for (i in resultKeys) {
+            panel.append("p").text(`${resultKeys[i]}: ${resultValues[i]}`);
+        };
+        // console.log(result.id);
+        // panel.append("p").text(`ID: ${result.id}`);
+        // panel.append("p").text(`Ethnicity: ${result.ethnicity}`);
+        // panel.append("p").text(`Gender: ${result.gender}`);
+        // panel.append("p").text(`Age: ${result.age}`);
+        // panel.append("p").text(`Location: ${result.location}`);
+        // panel.append("p").text(`Belly Button Type: ${result.bbtype}`);
+        // panel.append("p").text(`Wash Frequency: ${result.wfreq}`);
           
     });     
 }
