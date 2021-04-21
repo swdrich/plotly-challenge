@@ -34,7 +34,8 @@ function DrawBargraph(sampleID) {
             y: yticks,
             type: "bar",
             text: otu_labels.slice(0, 10).reverse(), // TBD
-            orientation: "h"
+            orientation: "h",
+            marker: {color: "cd4d47"}
         };
 
         var barArray = [barData];
@@ -51,7 +52,7 @@ function DrawBargraph(sampleID) {
 
 // This is a function to draw a bubble chart of all the data per sample
 function DrawBubblechart(sampleID) {
-    // console.log(`DrawBubblechart(${sampleID})`);
+    console.log(`DrawBubblechart(${sampleID})`);
 
     // Read JSON data
     d3.json("../data/samples.json").then(data => {
@@ -94,12 +95,6 @@ function DrawBubblechart(sampleID) {
 }
 
 
-// This is a helper function to unpack data from the metadata
-function unpack(key, value) {
-    return key.map(function(key) {
-        return key[value];
-    });
-}
 
 // This is a function to display the metadata values for the sample
 function ShowMetadata(sampleID) {
@@ -143,12 +138,59 @@ function ShowMetadata(sampleID) {
     });     
 }
 
+// This is a function to draw a wash frequency guage
+function DrawGuage(sampleID) {
+    console.log(`DrawGuage(${sampleID})`);
+
+    // Read JSON data
+    d3.json("../data/samples.json").then(data => {
+        console.log(data);
+
+        var metadata = data.metadata;
+        var resultArray = metadata.filter(metadata => metadata.id == sampleID);
+        console.log(resultArray);
+
+        var result = resultArray[0];
+        console.log(result);
+
+        var data = [
+            {
+            domain: { x: [0, 1], y: [0, 1] },
+            value: result.wfreq,
+            title: { text: "Wash Frequency" },
+            type: "indicator",
+            mode: "gauge+number",
+            gauge: { axis: { range: [null, 9] },
+                     steps: [
+                         { range: [0, 1], color: "e7e7e7"},
+                         { range: [1, 2], color: "e3dcd6"},
+                         { range: [2, 3], color: "edd6c5"},
+                         { range: [3, 4], color: "f0caae"},
+                         { range: [4, 5], color: "f8c5a3"},
+                         { range: [5, 6], color: "e49180"},
+                         { range: [6, 7], color: "d77270"},
+                         { range: [7, 8], color: "ca5659"},
+                         { range: [8, 9], color: "cd4d47"}
+                        ],
+                     bar: { color: "black"}   
+                    }
+                    
+            }
+        ];
+      
+        var layout = { width: 600, height: 400 };
+        Plotly.newPlot('guage', data, layout);
+    });
+};
+
+// This is a function that describes what to do when the input changes
 function optionChanged(newSampleID) {
     console.log(`User selected ${newSampleID}`);
 
     DrawBargraph(newSampleID);
     DrawBubblechart(newSampleID);
     ShowMetadata(newSampleID);
+    DrawGuage(newSampleID);
 }
 
 function InitDashboard() {
@@ -172,6 +214,7 @@ function InitDashboard() {
         DrawBargraph(id);
         DrawBubblechart(id);
         ShowMetadata(id);
+        DrawGuage(id);
     });
 }
 
