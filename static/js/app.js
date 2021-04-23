@@ -1,6 +1,6 @@
 console.log("app.js is loaded");
 
-// Initial code was given in office hours walkthrough by Dom
+// Initial code was given in office hours walkthrough by Instructor
 // This includes the DrawBargraph Function and the InitDashboard Function, as well as tips and tricks for structure
 
 // This is a function to draw a bar chart of the top ten bacterial samples
@@ -107,7 +107,7 @@ function ShowMetadata(sampleID) {
 
     // Read JSON data
     d3.json("../data/samples.json").then(data => {
-        console.log(data);
+        // console.log(data);
 
         // Filter data by sample id
         var metadata = data.metadata;
@@ -144,20 +144,20 @@ function DrawGuage(sampleID) {
 
     // Read JSON data
     d3.json("../data/samples.json").then(data => {
-        console.log(data);
+        // console.log(data);
 
         var metadata = data.metadata;
         var resultArray = metadata.filter(metadata => metadata.id == sampleID);
-        console.log(resultArray);
+        // console.log(resultArray);
 
         var result = resultArray[0];
-        console.log(result);
+        // console.log(result);
 
         var data = [
             {
             domain: { x: [0, 1], y: [0, 1] },
             value: result.wfreq,
-            title: { text: "Wash Frequency" },
+            title: { text: "Washes per Week" },
             type: "indicator",
             mode: "gauge+number",
             gauge: { axis: { range: [null, 9] },
@@ -179,7 +179,7 @@ function DrawGuage(sampleID) {
         ];
       
         var layout = { width: 600, height: 400 };
-        Plotly.newPlot('guage', data, layout);
+        Plotly.newPlot('gauge', data, layout);
     });
 };
 
@@ -199,7 +199,7 @@ function InitDashboard() {
     var selector = d3.select("#selDataset");
 
     d3.json("../data/samples.json").then(function(data) {
-        console.log(data);
+        // console.log(data);
 
         var sampleNames = data.names;
 
