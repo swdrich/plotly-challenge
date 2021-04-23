@@ -8,7 +8,7 @@ function DrawBargraph(sampleID) {
     console.log(`DrawBargraph(${sampleID})`);
 
     // Read JSON data
-    d3.json("../data/samples.json").then(data => {
+    d3.json("../../data/samples.json").then(data => {
         // console.log(data);
         
         // Filter data by sample id
