@@ -8,7 +8,12 @@ function DrawBargraph(sampleID) {
     console.log(`DrawBargraph(${sampleID})`);
 
     // Read JSON data
-    d3.json("../data/samples.json").then(data => {
+
+    // This is the relative file path below:
+    // d3.json("../data/samples.json").then(data => {
+
+    // This is the path required for GitHub Pages:
+    d3.json("https://swdrich.github.io/plotly-challenge/data/samples.json").then(data => {
         // console.log(data);
         // "C:\Users\swdri\OneDrive\Desktop\Plotly_SR\plotly-challenge\data\samples.json"
         // Filter data by sample id
