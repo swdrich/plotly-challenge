@@ -3,7 +3,7 @@ console.log("app.js is loaded");
 // Initial code was given in office hours walkthrough by Instructor
 // This includes the DrawBargraph Function and the InitDashboard Function, as well as tips and tricks for structure
 
-var filePath =  "https://swdrich.github.io/plotly-challenge/data/samples.json" // "../data/samples.json";
+var filePath =  "https://swdrich.github.io/plotly-challenge/data/samples.json"; // "../data/samples.json";
 
 // This is a function to draw a bar chart of the top ten bacterial samples
 function DrawBargraph(sampleID) {
@@ -14,8 +14,6 @@ function DrawBargraph(sampleID) {
     // This is the relative file path below:
     d3.json(filePath).then(data => {
 
-    // This is the path required for GitHub Pages:
-    // d3.json("https://github.com/swdrich/plotly-challenge/blob/main/data/samples.json").then(data => {
         console.log(data);
         
         // Filter data by sample id
@@ -63,8 +61,6 @@ function DrawBubblechart(sampleID) {
 
     // Read JSON data
     d3.json(filePath).then(data => {
-    //d3.json("https://github.com/swdrich/plotly-challenge/blob/main/data/samples.json").then(data => {
-        // console.log(data);
 
         // Filter data by sample id
         var samples = data.samples;
@@ -115,8 +111,6 @@ function ShowMetadata(sampleID) {
 
     // Read JSON data
     d3.json(filePath).then(data => {
-    //d3.json("https://github.com/swdrich/plotly-challenge/blob/main/data/samples.json").then(data => {
-        // console.log(data);
 
         // Filter data by sample id
         var metadata = data.metadata;
@@ -153,9 +147,7 @@ function DrawGuage(sampleID) {
 
     // Read JSON data
     d3.json(filePath).then(data => {
-    //d3.json("https://github.com/swdrich/plotly-challenge/blob/main/data/samples.json").then(data => {
-        // console.log(data);
-
+    
         var metadata = data.metadata;
         var resultArray = metadata.filter(metadata => metadata.id == sampleID);
         // console.log(resultArray);
@@ -209,8 +201,6 @@ function InitDashboard() {
     var selector = d3.select("#selDataset");
 
     d3.json(filePath).then(function(data) {
-    //d3.json("https://github.com/swdrich/plotly-challenge/blob/main/data/samples.json").then(data => {
-        // console.log(data);
 
         var sampleNames = data.names;
 
