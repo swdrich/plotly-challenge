@@ -60,7 +60,8 @@ function DrawBubblechart(sampleID) {
     console.log(`DrawBubblechart(${sampleID})`);
 
     // Read JSON data
-    d3.json("../data/samples.json").then(data => {
+    // d3.json("../data/samples.json").then(data => {
+    d3.json("https://github.com/swdrich/plotly-challenge/blob/main/data/samples.json").then(data => {
         // console.log(data);
 
         // Filter data by sample id
@@ -111,7 +112,8 @@ function ShowMetadata(sampleID) {
         .remove();
 
     // Read JSON data
-    d3.json("../data/samples.json").then(data => {
+    // d3.json("../data/samples.json").then(data => {
+    d3.json("https://github.com/swdrich/plotly-challenge/blob/main/data/samples.json").then(data => {
         // console.log(data);
 
         // Filter data by sample id
@@ -148,7 +150,8 @@ function DrawGuage(sampleID) {
     console.log(`DrawGuage(${sampleID})`);
 
     // Read JSON data
-    d3.json("../data/samples.json").then(data => {
+    // d3.json("../data/samples.json").then(data => {
+    d3.json("https://github.com/swdrich/plotly-challenge/blob/main/data/samples.json").then(data => {
         // console.log(data);
 
         var metadata = data.metadata;
@@ -203,7 +206,8 @@ function InitDashboard() {
 
     var selector = d3.select("#selDataset");
 
-    d3.json("../data/samples.json").then(function(data) {
+    // d3.json("../data/samples.json").then(function(data) {
+    d3.json("https://github.com/swdrich/plotly-challenge/blob/main/data/samples.json").then(data => {
         // console.log(data);
 
         var sampleNames = data.names;
