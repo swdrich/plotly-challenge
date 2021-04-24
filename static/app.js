@@ -3,6 +3,8 @@ console.log("app.js is loaded");
 // Initial code was given in office hours walkthrough by Instructor
 // This includes the DrawBargraph Function and the InitDashboard Function, as well as tips and tricks for structure
 
+var filePath = "../data/samples.json";
+
 // This is a function to draw a bar chart of the top ten bacterial samples
 function DrawBargraph(sampleID) {
     console.log(`DrawBargraph(${sampleID})`);
@@ -10,12 +12,12 @@ function DrawBargraph(sampleID) {
     // Read JSON data
 
     // This is the relative file path below:
-    // d3.json("../data/samples.json").then(data => {
+    d3.json(filePath).then(data => {
 
     // This is the path required for GitHub Pages:
-    d3.json("https://github.com/swdrich/plotly-challenge/blob/main/data/samples.json").then(data => {
-        // console.log(data);
-        // "C:\Users\swdri\OneDrive\Desktop\Plotly_SR\plotly-challenge\data\samples.json"
+    // d3.json("https://github.com/swdrich/plotly-challenge/blob/main/data/samples.json").then(data => {
+        console.log(data);
+        
         // Filter data by sample id
         var samples = data.samples;
         var resultArray = samples.filter(sample => sample.id == sampleID);
@@ -60,8 +62,8 @@ function DrawBubblechart(sampleID) {
     console.log(`DrawBubblechart(${sampleID})`);
 
     // Read JSON data
-    // d3.json("../data/samples.json").then(data => {
-    d3.json("https://github.com/swdrich/plotly-challenge/blob/main/data/samples.json").then(data => {
+    d3.json(filePath).then(data => {
+    //d3.json("https://github.com/swdrich/plotly-challenge/blob/main/data/samples.json").then(data => {
         // console.log(data);
 
         // Filter data by sample id
@@ -112,8 +114,8 @@ function ShowMetadata(sampleID) {
         .remove();
 
     // Read JSON data
-    // d3.json("../data/samples.json").then(data => {
-    d3.json("https://github.com/swdrich/plotly-challenge/blob/main/data/samples.json").then(data => {
+    d3.json(filePath).then(data => {
+    //d3.json("https://github.com/swdrich/plotly-challenge/blob/main/data/samples.json").then(data => {
         // console.log(data);
 
         // Filter data by sample id
@@ -150,8 +152,8 @@ function DrawGuage(sampleID) {
     console.log(`DrawGuage(${sampleID})`);
 
     // Read JSON data
-    // d3.json("../data/samples.json").then(data => {
-    d3.json("https://github.com/swdrich/plotly-challenge/blob/main/data/samples.json").then(data => {
+    d3.json(filePath).then(data => {
+    //d3.json("https://github.com/swdrich/plotly-challenge/blob/main/data/samples.json").then(data => {
         // console.log(data);
 
         var metadata = data.metadata;
@@ -206,8 +208,8 @@ function InitDashboard() {
 
     var selector = d3.select("#selDataset");
 
-    // d3.json("../data/samples.json").then(function(data) {
-    d3.json("https://github.com/swdrich/plotly-challenge/blob/main/data/samples.json").then(data => {
+    d3.json(filePath).then(function(data) {
+    //d3.json("https://github.com/swdrich/plotly-challenge/blob/main/data/samples.json").then(data => {
         // console.log(data);
 
         var sampleNames = data.names;
