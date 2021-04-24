@@ -3,7 +3,7 @@ console.log("app.js is loaded");
 // Initial code was given in office hours walkthrough by Instructor
 // This includes the DrawBargraph Function and the InitDashboard Function, as well as tips and tricks for structure
 
-var filePath = "./data/samples.json";
+var filePath = "data/samples.json";
 
 // This is a function to draw a bar chart of the top ten bacterial samples
 function DrawBargraph(sampleID) {
